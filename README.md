@@ -6,6 +6,11 @@ USB Interface ideas from [https://github.com/kostmo/pyrocket](https://github.com
 
 ## Installation
 
+### Raspberry power supply
+
+Either use a powered USB Hub or tune your raspberry conf:
+Add `max_usb_current=1` to `/boot/config.txt` and reboot. Make sure you have a big enough power supply.
+
 ### Latest NodeJS, USB library and GCC-4.7
 
 This section is only required if you have troubles when trying to install the required packages in the next section below.
