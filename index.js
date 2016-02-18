@@ -30,6 +30,8 @@ console.log('[D] = right');
 console.log('[F] = !fire!');
 console.log('[Y] = down');
 console.log('');
+console.log('CTRL + C will end the program!');
+console.log('');
 
 let keyMap = {
 	'a': 'left',

@@ -2,7 +2,7 @@
 
 let usb = require('usb');
 
-console.log(usb);
+// console.log(usb);
 
 let arrKnownMissiles = [
 	// '6465:32801',
