@@ -74,15 +74,15 @@ stdin.on( 'data', function( key ){
 		process.exit();
 	}
 	let func = keyMap[key];
+	if(func === 'led') {
+		func += ledOn ? 'off' : 'on';
+		ledOn = !ledOn;
+	}
 	if(typeof USBmissiles[func] !== 'function') {
 		console.error('Command not found!');
 	} else {
 		process.stdout.clearLine();
 		process.stdout.write(' -> Executing "'+func+'"\r')
-		if(func === 'led') {
-			func += ledOn ? 'off' : 'on';
-			ledOn = !ledOn;
-		}
 		USBmissiles[func]();
 	}
 });
