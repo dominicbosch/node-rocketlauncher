@@ -100,7 +100,7 @@ exports.burst = function() {
 	timer = setInterval(() => {
 		if(++numShots === 4) exports.stop();
 		else exports.fire();
-	}, 3500);
+	}, 4000); // safety margin for raspberry, seemed to be slower
 };
 
 exports.test = function() {
