@@ -91,7 +91,7 @@ exports.downleft = function() { sendCommand(CMD.down+CMD.left) };
 exports.upleft = function() { sendCommand(CMD.up+CMD.left) };
 
 exports.ledon = function() { sendCommand(0x01, 0x03) };
-exports.ledoff = function() { sendCommand(0x01, 0x03) };
+exports.ledoff = function() { sendCommand(0x00, 0x03) };
 
 exports.fire = function() { sendCommand(CMD.fire) };
 exports.burst = function() {
