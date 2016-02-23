@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>RaspiCam shots</title>
+
+	<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+	<script>
+	var socket = io();
+	socket.on('imageUpdate', function(url) {
+		document.getElementById('stream').setAttribute('src', url);
+	});
+	</script>
+</head>
+<body>
+	<h1>RaspiCam Shots</h1>
+	<img src="snapshot.jpg" id="stream">
+</body>
+</html>
