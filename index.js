@@ -19,27 +19,43 @@ console.log('');
 console.log('*************************');
 console.log('');
 console.log('Use your keys as follows:')
-console.log('    [W]');
-console.log('[A] [S] [D] [F]');
-console.log('    [Y]');
 console.log('');
+console.log('[Q] [W] [E]'); //'     [R]');
+console.log('[A] [S] [D] [F]');
+console.log('[Y] [X] [C]         [B]');
+console.log('');
+console.log('[Q] = upleft');
 console.log('[W] = up');
+console.log('[E] = upright');
+// console.log('[R] = reset');
 console.log('[A] = left');
 console.log('[S] = stop');
 console.log('[D] = right');
+console.log('[Y] = downleft');
+console.log('[X] = down');
+console.log('[C] = downright');
+console.log('');
 console.log('[F] = !fire!');
-console.log('[Y] = down');
+console.log('[B] = !burst!');
 console.log('');
 console.log('CTRL + C will end the program!');
 console.log('');
 
 let keyMap = {
-	'a': 'left',
-	'd': 'right',
-	'w': 'up',
-	'y': 'down',
-	's': 'stop',
-	'f': 'fire'
+	q: 'upleft',
+	a: 'left',
+	d: 'right',
+	w: 'up',
+	e: 'upright',
+	y: 'downleft',
+	x: 'down',
+	c: 'downright',
+	s: 'stop',
+	f: 'fire',
+	// r: 'reset',
+	// b: 'boom'
+	b: 'burst',
+	t: 'test'
 };
 
 let stdin = process.stdin;
@@ -57,7 +73,8 @@ stdin.on( 'data', function( key ){
 	if(typeof USBmissiles[func] !== 'function') {
 		console.error('Command not found!');
 	} else {
-		console.log(' -> '+func)
+		process.stdout.clearLine();
+		process.stdout.write(' -> Executing "'+func+'"\r')
 		USBmissiles[func]();
 	}
 });
