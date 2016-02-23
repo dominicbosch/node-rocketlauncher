@@ -21,8 +21,8 @@ console.log('');
 console.log('Use your keys as follows:')
 console.log('');
 console.log('[Q] [W] [E]'); //'     [R]');
-console.log('[A] [S] [D] [F]');
-console.log('[Y] [X] [C]         [B]');
+console.log(' [A] [S] [D] [F]                [L]');
+console.log('  [Y] [X] [C]         [B]');
 console.log('');
 console.log('[Q] = upleft');
 console.log('[W] = up');
@@ -34,6 +34,8 @@ console.log('[D] = right');
 console.log('[Y] = downleft');
 console.log('[X] = down');
 console.log('[C] = downright');
+console.log('');
+console.log('[L] = led on/off');
 console.log('');
 console.log('[F] = !fire!');
 console.log('[B] = !burst!');
@@ -55,9 +57,11 @@ let keyMap = {
 	// r: 'reset',
 	// b: 'boom'
 	b: 'burst',
+	l: 'led',
 	t: 'test'
 };
 
+let ledOn = false;
 let stdin = process.stdin;
 // give every character:
 stdin.setRawMode(true);
@@ -75,6 +79,10 @@ stdin.on( 'data', function( key ){
 	} else {
 		process.stdout.clearLine();
 		process.stdout.write(' -> Executing "'+func+'"\r')
+		if(func === 'led') {
+			func += ledOn ? 'off' : 'on';
+			ledOn = !ledOn;
+		}
 		USBmissiles[func]();
 	}
 });

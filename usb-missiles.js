@@ -56,8 +56,9 @@ exports.getNumAvailable = function() {
 	return arrFoundMissiles.length;
 };
 
-function sendCommand(signal) {
-	let b = new Buffer([0x02, signal, 0x00,0x00,0x00,0x00,0x00,0x00]);
+function sendCommand(signal, firstByte) {
+	if(!firstByte) firstByte = 0x02;
+	let b = new Buffer([firstByte, signal, 0x00,0x00,0x00,0x00,0x00,0x00]);
 	// console.log(b);
 	for(let i = 0; i < arrFoundMissiles.length; i++) {
 		// controlTransfer(bmRequestType, bRequest, wValue, wIndex, data_or_length, callback(error, data))
@@ -88,6 +89,9 @@ exports.downright = function() { sendCommand(CMD.down+CMD.right) };
 exports.upright = function() { sendCommand(CMD.up+CMD.right) };
 exports.downleft = function() { sendCommand(CMD.down+CMD.left) };
 exports.upleft = function() { sendCommand(CMD.up+CMD.left) };
+
+exports.ledon = function() { sendCommand(0x01, 0x03) };
+exports.ledoff = function() { sendCommand(0x01, 0x03) };
 
 exports.fire = function() { sendCommand(CMD.fire) };
 exports.burst = function() {
