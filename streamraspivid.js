@@ -1,29 +1,35 @@
 'use strict';
 
-let raspivid = require('raspivid');
 let spawn = require('child_process').spawn;
-let proc;
+let procGstLaunch, procVideo;
 
-let args = [
+let argsVideo = [
+	'--nopreview',
+	'--timeout', '0',
+	'--width', '1024',
+	'--height', '768',
+	'--hflip', '--vflip',
+	'-o', '-'
+];
+
+procVideo = spawn('raspivid', argsVideo, {
+	stdio: ['ignore', 'pipe', 'inherit']
+});
+
+let argsGstLaunch = [
 	'fdsrc',
 	'!', 'h264parse',
 	'!', 'rtph264pay', 'config-interval=1', 'pt=96',
 	'!', 'gdppay',
 	'!', 'udpsink', 'host=192.168.0.20', 'port=5000'
 ];
-proc = spawn('gst-launch-1.0', args);
 
-let video = raspivid({
-	timeout: 0,
-    width: 1024,
-    height: 768,
-    hflip: null,
-    vflip: null
-});
-video.pipe(proc.stdin);
+procGstlaunch = spawn('gst-launch-1.0', argsGstLaunch);
+procVideo.stdout.pipe(procGstlaunch.stdin);
 
 process.on('exit', () => {
-	proc.exit();
+	procVideo.kill('SIGINT');
+	procGstlaunch.kill('SIGINT');
 });
 
 // var args = [ './child.js', /* command arguments */ ];

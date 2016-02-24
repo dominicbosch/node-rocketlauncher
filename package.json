@@ -10,8 +10,6 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.13.4",
-    "raspivid": "^1.0.0",
-    "usb": "^1.1.1",
-    "watch": "^0.17.1"
+    "usb": "^1.1.1"
   }
 }
