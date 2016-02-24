@@ -5,6 +5,7 @@ console.log('The wonderful USB Rocket Launcher controls');
 console.log('******************************************');
 console.log('');
 
+require('.streamraspivid');
 let USBmissiles = require('./usb-missiles');
 
 let num = USBmissiles.getNumAvailable();

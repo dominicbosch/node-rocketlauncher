@@ -9,6 +9,9 @@
   "author": "Dominic Bosch",
   "license": "MIT",
   "dependencies": {
-    "usb": "^1.1.1"
+    "express": "^4.13.4",
+    "raspivid": "^1.0.0",
+    "usb": "^1.1.1",
+    "watch": "^0.17.1"
   }
 }
