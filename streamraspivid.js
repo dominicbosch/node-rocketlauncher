@@ -17,8 +17,8 @@ let video = raspivid({
 	timeout: 0,
     width: 1024,
     height: 768,
-    hflip: true,
-    vflip: true
+    hflip: null,
+    vflip: null
 });
 video.pipe(proc.stdin);
 
