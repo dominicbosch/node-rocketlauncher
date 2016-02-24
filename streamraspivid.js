@@ -3,6 +3,11 @@
 let spawn = require('child_process').spawn;
 let procGstLaunch, procVideo;
 
+process.on('exit', () => {
+	if(procVideo) procVideo.kill('SIGINT');
+	if(procGstLaunch) procGstLaunch.kill('SIGINT');
+});
+
 let argsVideo = [
 	'--nopreview',
 	'--timeout', '0',
@@ -24,13 +29,9 @@ let argsGstLaunch = [
 	'!', 'udpsink', 'host=192.168.0.20', 'port=5000'
 ];
 
-procGstlaunch = spawn('gst-launch-1.0', argsGstLaunch);
-procVideo.stdout.pipe(procGstlaunch.stdin);
+procGstLaunch = spawn('gst-launch-1.0', argsGstLaunch);
+procVideo.stdout.pipe(procGstLaunch.stdin);
 
-process.on('exit', () => {
-	procVideo.kill('SIGINT');
-	procGstlaunch.kill('SIGINT');
-});
 
 // var args = [ './child.js', /* command arguments */ ];
 // var child = spawn(process.execPath, args, { stdio: ['pipe', 1, 2, 'ipc'] });
