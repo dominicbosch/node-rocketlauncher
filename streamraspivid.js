@@ -22,6 +22,10 @@ let video = raspivid({
 });
 video.pipe(proc.stdin);
 
+process.on('exit', () => {
+	proc.exit();
+});
+
 // var args = [ './child.js', /* command arguments */ ];
 // var child = spawn(process.execPath, args, { stdio: ['pipe', 1, 2, 'ipc'] });
 // file.pipe(child.stdin);
