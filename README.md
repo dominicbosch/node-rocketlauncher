@@ -18,7 +18,7 @@ USB Interface ideas from [https://github.com/kostmo/pyrocket](https://github.com
 
 	Depending on your platform you require the build tools to compile certain code from the NPM repository. You will know it if the "Simple Installation beow" fails. On Ubuntu this is as easy as:
 
-		sudo apt-get install build-essential libudev-dev
+		sudo apt-get install build-essential libudev-dev gstreamer1.0-tools
 
 
 
